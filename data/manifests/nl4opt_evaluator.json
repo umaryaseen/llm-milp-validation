@@ -1,0 +1,67 @@
+{
+  "evaluator_id": "nl4opt_official_evaluator",
+  "source_alias": "nl4opt-subtask2-official",
+  "upstream_repository_url": "https://github.com/nl4opt/nl4opt-subtask2-baseline",
+  "source_commit_sha": "18a54bcb2c34be7d034d994c9e065e59cdf1ddfe",
+  "license_identifier": "MIT",
+  "license_file": "LICENSE.txt",
+  "license_sha256": "06fefe882e2f00854fc195ef872a716fca8437316ec1e4275e5426ab92e26e15",
+  "acquired_at": "2026-09-13",
+  "relationship_to_benchmark": "nl4opt_generation",
+  "files": [
+    {
+      "upstream_relative_path": "LICENSE.txt",
+      "local_raw_path": "data/raw/nl4opt_evaluator/18a54bcb2c34be7d034d994c9e065e59cdf1ddfe/LICENSE.txt",
+      "sha256": "06fefe882e2f00854fc195ef872a716fca8437316ec1e4275e5426ab92e26e15",
+      "size_bytes": 1080
+    },
+    {
+      "upstream_relative_path": "scoring.py",
+      "local_raw_path": "data/raw/nl4opt_evaluator/18a54bcb2c34be7d034d994c9e065e59cdf1ddfe/scoring.py",
+      "sha256": "1c172914975c40f0add570ffdf9da4c80fd534dda99dec18fede5e50a75d4912",
+      "size_bytes": 2605
+    },
+    {
+      "upstream_relative_path": "parsers.py",
+      "local_raw_path": "data/raw/nl4opt_evaluator/18a54bcb2c34be7d034d994c9e065e59cdf1ddfe/parsers.py",
+      "sha256": "85cb64371e817ada6acb0bff9958c2b83cd42e0cf1e23ac1a77fbac66d1af63e",
+      "size_bytes": 16551
+    },
+    {
+      "upstream_relative_path": "test_utils.py",
+      "local_raw_path": "data/raw/nl4opt_evaluator/18a54bcb2c34be7d034d994c9e065e59cdf1ddfe/test_utils.py",
+      "sha256": "89d931830e9f22d1b6a92968d0ceb0df7631b15d613753890ab181f3ee16e39e",
+      "size_bytes": 5411
+    },
+    {
+      "upstream_relative_path": "parsing_utils/constants.py",
+      "local_raw_path": "data/raw/nl4opt_evaluator/18a54bcb2c34be7d034d994c9e065e59cdf1ddfe/parsing_utils/constants.py",
+      "sha256": "ecc7e41d349887af2e4517b966876b474a0529eee16b99568627eae037db9235",
+      "size_bytes": 911
+    },
+    {
+      "upstream_relative_path": "utils.py",
+      "local_raw_path": "data/raw/nl4opt_evaluator/18a54bcb2c34be7d034d994c9e065e59cdf1ddfe/utils.py",
+      "sha256": "072f9890a38b288b81903073b2ec917118baab598c64c2649b7a4c2941c3bc1e",
+      "size_bytes": 8290
+    },
+    {
+      "upstream_relative_path": "constants.py",
+      "local_raw_path": "data/raw/nl4opt_evaluator/18a54bcb2c34be7d034d994c9e065e59cdf1ddfe/constants.py",
+      "sha256": "b6b69af0dfee01c16c0e926728ba3f61140101d9a1eed4bbf055218b3d149934",
+      "size_bytes": 1435
+    },
+    {
+      "upstream_relative_path": "environment.yml",
+      "local_raw_path": "data/raw/nl4opt_evaluator/18a54bcb2c34be7d034d994c9e065e59cdf1ddfe/environment.yml",
+      "sha256": "5ad01436f7f84227ea03d2847bf8ee897e96c1a29b8433273433bcd151a721bc",
+      "size_bytes": 1699
+    },
+    {
+      "upstream_relative_path": "README.md",
+      "local_raw_path": "data/raw/nl4opt_evaluator/18a54bcb2c34be7d034d994c9e065e59cdf1ddfe/README.md",
+      "sha256": "b79e5c49cf900dc840f7c9460fa4941fbad6e573378502a329a0295d9dfb07e7",
+      "size_bytes": 8906
+    }
+  ]
+}

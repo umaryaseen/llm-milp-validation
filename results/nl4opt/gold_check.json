@@ -1,0 +1,11 @@
+{
+  "evaluator_version": "18a54bcb2c34be7d034d994c9e065e59cdf1ddfe",
+  "dataset_version": "49f1e0d66b7fdcd33305a7f281c2a7c13f5620ea",
+  "total_cases": 1101,
+  "successfully_parsed": 1101,
+  "anomalous_case_ids": [
+    "-1864917274"
+  ],
+  "anomaly_count": 1,
+  "aggregate_official_score": 0.9997628083491461
+}
