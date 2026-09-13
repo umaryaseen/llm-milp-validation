@@ -166,7 +166,8 @@ def fetch_dataset(
             manifest = _manifest_for_raw(paths.root, commit, utc_now())
             _write_manifest(paths.manifest, manifest)
         except Exception:
-            shutil.rmtree(destination)
+            # Keep partial or malformed source bytes available for investigation.
+            # The missing/invalid manifest prevents a later fetch from replacing them.
             raise
     return verify_dataset(root=paths.root)
 
@@ -194,6 +195,17 @@ def verify_dataset(*, root: Path | None = None) -> DatasetManifest:
         )
     if manifest.source_commit_sha not in Path(manifest.raw_data_root).parts:
         raise DatasetIntegrityError("manifest raw_data_root does not contain its frozen commit SHA")
+    raw_root = Path(manifest.raw_data_root)
+    upstream_paths = [acquired.upstream_relative_path for acquired in manifest.files]
+    local_paths = [acquired.local_raw_path for acquired in manifest.files]
+    if len(upstream_paths) != len(set(upstream_paths)) or len(local_paths) != len(set(local_paths)):
+        raise DatasetIntegrityError("manifest contains duplicate acquired file paths")
+    for acquired in manifest.files:
+        expected_local = (raw_root / acquired.upstream_relative_path).as_posix()
+        if acquired.local_raw_path != expected_local:
+            raise DatasetIntegrityError(
+                f"manifest local path does not match frozen raw root: {acquired.local_raw_path}"
+            )
     for acquired in manifest.files:
         path = paths.root / acquired.local_raw_path
         if not path.is_file():

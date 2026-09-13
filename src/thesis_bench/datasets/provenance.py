@@ -23,9 +23,10 @@ class AcquiredFile(SchemaModel):
     @field_validator("upstream_relative_path", "local_raw_path")
     @classmethod
     def relative_path(cls, value: str) -> str:
-        if Path(value).is_absolute() or ".." in Path(value).parts:
+        normalized = value.replace("\\", "/")
+        if Path(normalized).is_absolute() or ".." in Path(normalized).parts:
             raise ValueError("manifest paths must be relative and stay within the project")
-        return value.replace("\\", "/")
+        return normalized
 
 
 class DatasetManifest(SchemaModel):
@@ -51,9 +52,12 @@ class DatasetManifest(SchemaModel):
     @field_validator("raw_data_root", "upstream_license_path")
     @classmethod
     def relative_root(cls, value: str | None) -> str | None:
-        if value is not None and (Path(value).is_absolute() or ".." in Path(value).parts):
+        if value is None:
+            return None
+        normalized = value.replace("\\", "/")
+        if Path(normalized).is_absolute() or ".." in Path(normalized).parts:
             raise ValueError("manifest paths must be relative")
-        return value.replace("\\", "/") if value is not None else None
+        return normalized
 
 
 def sha256_file(path: Path) -> str:

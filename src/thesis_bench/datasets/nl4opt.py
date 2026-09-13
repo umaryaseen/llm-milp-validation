@@ -71,6 +71,10 @@ class NL4OptAdapter:
 
     @classmethod
     def from_manifest(cls, root: Path) -> "NL4OptAdapter":
+        # Keep direct adapter users safe from reading a tampered frozen source.
+        from thesis_bench.datasets.acquisition import verify_dataset
+
+        verify_dataset(root=root)
         manifest_path = root / "data" / "manifests" / "nl4opt_generation.json"
         return cls(root, load_manifest(manifest_path))
 

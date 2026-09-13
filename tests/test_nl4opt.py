@@ -39,6 +39,7 @@ def test_fixture_acquisition_writes_manifest_and_adapter_cases(tmp_path: Path) -
         "dev-source-001",
         "test-source-001",
     ]
+    assert len({case.case_id for case in cases}) == len(cases)
     assert {case.benchmark_version for case in cases} == {FROZEN_SHA}
     assert cases[0].reference_objective == {
         "type": "objective",
@@ -93,6 +94,8 @@ def test_checksum_tamper_and_missing_file_fail_loudly(tmp_path: Path) -> None:
     raw_file.write_bytes(raw_file.read_bytes().replace(b"Train fixture", b"train fixture", 1))
     with pytest.raises(DatasetIntegrityError, match="expected checksum"):
         verify_dataset(root=tmp_path)
+    with pytest.raises(DatasetIntegrityError, match="expected checksum"):
+        NL4OptAdapter.from_manifest(tmp_path)
 
     raw_file.write_text((FIXTURE / "generation_data/train.jsonl").read_text(), encoding="utf-8")
     raw_file.unlink()
@@ -106,6 +109,23 @@ def test_fetch_is_idempotent_when_existing_source_is_valid(tmp_path: Path) -> No
     second = fetch_dataset(root=tmp_path, clone=lambda _: pytest.fail("must not clone"))
     assert first == second
     assert len(calls) == 1
+
+
+def test_malformed_acquisition_bytes_are_retained(tmp_path: Path) -> None:
+    def clone(destination: Path) -> str:
+        shutil.copytree(FIXTURE, destination)
+        train = destination / "generation_data" / "train.jsonl"
+        train.write_text(train.read_text() + '{"malformed": true, "extra": true}\n')
+        return FROZEN_SHA
+
+    with pytest.raises(DatasetSchemaError):
+        fetch_dataset(root=tmp_path, clone=clone)
+    assert (
+        tmp_path
+        / "data/raw/nl4opt_generation"
+        / FROZEN_SHA
+        / "generation_data/train.jsonl"
+    ).is_file()
 
 
 def test_info_command_works_for_local_fixture(

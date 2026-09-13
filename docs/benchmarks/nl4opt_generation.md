@@ -55,7 +55,7 @@ No expected solution or numeric objective value is inferred. Optional data is le
 
 ## Integrity
 
-`datasets verify nl4opt` checks the tracked manifest, every required file, byte size, SHA-256 checksum, JSONL parseability, required fields, and split counts. A checksum or size mismatch fails with the affected path and expected and actual values. Verification never redownloads, repairs, or regenerates the manifest.
+`datasets verify nl4opt` checks the tracked manifest, every required file, byte size, SHA-256 checksum, JSONL parseability, required fields, and split counts. The adapter also performs this verification before direct access. A checksum or size mismatch fails with the affected path and expected and actual values. Verification never redownloads, repairs, or regenerates the manifest.
 
 The manifest records these SHA-256 checksums and byte sizes:
 
