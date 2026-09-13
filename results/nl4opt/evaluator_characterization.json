@@ -1,0 +1,119 @@
+{
+  "evaluator_version": "18a54bcb2c34be7d034d994c9e065e59cdf1ddfe",
+  "dataset_version": "fixture",
+  "case_id": "characterization-case",
+  "variants": [
+    {
+      "name": "perfect",
+      "official_score": 1.0,
+      "parse_status": "success",
+      "false_positives": 0,
+      "false_negatives": 0,
+      "objective_match": true
+    },
+    {
+      "name": "missing_constraint",
+      "official_score": 0.6666666666666667,
+      "parse_status": "success",
+      "false_positives": 0,
+      "false_negatives": 1,
+      "objective_match": true
+    },
+    {
+      "name": "extra_constraint",
+      "official_score": 0.6666666666666667,
+      "parse_status": "success",
+      "false_positives": 1,
+      "false_negatives": 0,
+      "objective_match": true
+    },
+    {
+      "name": "wrong_direction",
+      "official_score": 0.6666666666666667,
+      "parse_status": "success",
+      "false_positives": 1,
+      "false_negatives": 0,
+      "objective_match": true
+    },
+    {
+      "name": "wrong_coefficient",
+      "official_score": 0.6666666666666667,
+      "parse_status": "success",
+      "false_positives": 1,
+      "false_negatives": 0,
+      "objective_match": true
+    },
+    {
+      "name": "wrong_rhs",
+      "official_score": 0.6666666666666667,
+      "parse_status": "success",
+      "false_positives": 1,
+      "false_negatives": 0,
+      "objective_match": true
+    },
+    {
+      "name": "wrong_objective",
+      "official_score": 0.6666666666666667,
+      "parse_status": "success",
+      "false_positives": 1,
+      "false_negatives": 0,
+      "objective_match": false
+    },
+    {
+      "name": "wrong_objective_direction",
+      "official_score": 1.0,
+      "parse_status": "success",
+      "false_positives": 0,
+      "false_negatives": 0,
+      "objective_match": true
+    },
+    {
+      "name": "constraint_order_permutation",
+      "official_score": 1.0,
+      "parse_status": "success",
+      "false_positives": 0,
+      "false_negatives": 0,
+      "objective_match": true
+    },
+    {
+      "name": "algebraic_scaling",
+      "official_score": 0.6666666666666667,
+      "parse_status": "success",
+      "false_positives": 1,
+      "false_negatives": 0,
+      "objective_match": true
+    },
+    {
+      "name": "sign_normalized_equivalent",
+      "official_score": 1.0,
+      "parse_status": "success",
+      "false_positives": 0,
+      "false_negatives": 0,
+      "objective_match": true
+    },
+    {
+      "name": "malformed",
+      "official_score": 0.0,
+      "parse_status": "failed",
+      "false_positives": 1,
+      "false_negatives": 2,
+      "objective_match": false
+    },
+    {
+      "name": "empty",
+      "official_score": 0.0,
+      "parse_status": "failed",
+      "false_positives": 1,
+      "false_negatives": 2,
+      "objective_match": false
+    },
+    {
+      "name": "duplicate_constraint",
+      "official_score": 1.0,
+      "parse_status": "success",
+      "false_positives": 0,
+      "false_negatives": 0,
+      "objective_match": true
+    }
+  ]
+}

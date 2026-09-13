@@ -16,6 +16,8 @@ from thesis_bench.datasets.acquisition import (
     verify_dataset,
 )
 from thesis_bench.datasets.registry import get_benchmark
+from thesis_bench.evaluation.characterize import gold_check, write_characterization
+from thesis_bench.evaluation.provenance import fetch_evaluator, verify_evaluator
 from thesis_bench.experiments.runner import RunFailedError, dry_run
 from thesis_bench.experiments.storage import ArtifactConflictError
 
@@ -50,6 +52,19 @@ def build_parser() -> argparse.ArgumentParser:
     sample.add_argument("benchmark", choices=("nl4opt",))
     sample.add_argument("--split", required=True)
     sample.add_argument("--count", type=int, default=1)
+    evaluators = subparsers.add_parser("evaluators", help="Inspect the pinned official evaluators")
+    evaluator_commands = evaluators.add_subparsers(dest="evaluator_command", required=True)
+    for command, help_text in (
+        ("fetch", "Acquire pinned evaluator source"),
+        ("verify", "Verify pinned evaluator source"),
+        ("info", "Show evaluator provenance"),
+        ("characterize", "Write offline evaluator characterization"),
+    ):
+        command_parser = evaluator_commands.add_parser(command, help=help_text)
+        command_parser.add_argument("evaluator", choices=("nl4opt",))
+    evaluator_commands.add_parser("gold-check", help="Check all frozen gold records").add_argument(
+        "evaluator", choices=("nl4opt",)
+    )
     return parser
 
 
@@ -64,7 +79,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         elif args.command == "dry-run":
             print(dry_run(config, run_id=args.run_id))
         else:
-            return _datasets_command(args)
+            if args.command == "datasets":
+                return _datasets_command(args)
+            return _evaluators_command(args)
     except (
         ValidationError,
         tomllib.TOMLDecodeError,
@@ -123,4 +140,30 @@ def _datasets_command(args: argparse.Namespace) -> int:
             }
             for case in cases
         ], indent=2, ensure_ascii=False))
+    return 0
+
+
+def _evaluators_command(args: argparse.Namespace) -> int:
+    root = Path.cwd()
+    if args.evaluator != "nl4opt":
+        raise ValueError(f"unsupported evaluator {args.evaluator!r}")
+    if args.evaluator_command == "fetch":
+        manifest = fetch_evaluator(root)
+        print(
+            f"Frozen evaluator at {manifest.source_commit_sha}; "
+            "manifest data/manifests/nl4opt_evaluator.json"
+        )
+    elif args.evaluator_command == "verify":
+        manifest = verify_evaluator(root)
+        print(f"Integrity verified: {manifest.evaluator_id} ({manifest.source_commit_sha})")
+    elif args.evaluator_command == "info":
+        print(json.dumps(verify_evaluator(root).model_dump(mode="json"), indent=2))
+    elif args.evaluator_command == "characterize":
+        print(write_characterization(root))
+    else:
+        report = gold_check(root)
+        path = root / "results" / "nl4opt" / "gold_check.json"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+        print(json.dumps(report, indent=2))
     return 0

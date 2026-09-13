@@ -69,13 +69,14 @@ The official NL4Opt source is acquired locally under `data/raw/nl4opt_generation
 
 - [x] Phase 0 — Experiment framework foundation
 - [x] Phase 1 — NL4Opt dataset adapter and provenance
-- [ ] Phase 2 — Original NL4Opt evaluation reproduction
-- [ ] Phase 3 — Contemporary LLM benchmark
-- [ ] Phase 4 — OptiMUS / NLP4LP replication
-- [ ] Phase 5 — OPT-Engine benchmark subset
-- [ ] Phase 6 — Semantic error corpus
-- [ ] Phase 7 — Validation framework
-- [ ] Phase 8 — Full experimental evaluation
+- [ ] Phase 2 — Official NL4Opt evaluation reproduction
+- [ ] Phase 3 — LM4OPT prompt protocols and contemporary providers
+- [ ] Phase 4 — Contemporary NL4Opt benchmark
+- [ ] Phase 5 — OptiMUS / NLP4LP replication
+- [ ] Phase 6 — OPT-Engine benchmark subset
+- [ ] Phase 7 — Semantic error corpus
+- [ ] Phase 8 — Validation framework
+- [ ] Phase 9 — Full experimental evaluation
 
 ## Citation
 
