@@ -179,6 +179,13 @@ def verify_dataset(*, root: Path | None = None) -> DatasetManifest:
     manifest = load_manifest(paths.manifest)
     if manifest.benchmark_id != BENCHMARK_ID:
         raise DatasetIntegrityError(f"unexpected benchmark ID in manifest: {manifest.benchmark_id}")
+    if manifest.source_alias != SOURCE_ALIAS:
+        raise DatasetIntegrityError(f"unexpected source alias in manifest: {manifest.source_alias}")
+    expected_repository = OFFICIAL_REPOSITORY_URL.removesuffix(".git")
+    if manifest.upstream_repository_url != expected_repository:
+        raise DatasetIntegrityError(
+            "manifest upstream repository is not the official NL4Opt repository"
+        )
     manifest_paths = {acquired.upstream_relative_path for acquired in manifest.files}
     missing_required = sorted(set(REQUIRED_UPSTREAM_FILES) - manifest_paths)
     if missing_required:
