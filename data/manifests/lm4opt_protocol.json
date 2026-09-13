@@ -1,0 +1,32 @@
+{
+  "protocol_id": "nl4opt_lm4opt",
+  "protocol_versions": ["nl4opt_lm4opt_zero_shot@1", "nl4opt_lm4opt_one_shot@1"],
+  "source_paper": {
+    "title": "LM4OPT: Unveiling the Potential of Large Language Models in Formulating Mathematical Optimization Problems",
+    "authors": ["Tasnim Ahmed", "Salimur Choudhury"],
+    "year": 2024,
+    "venue": "INFOR: Information Systems and Operational Research 62(4), 559-572",
+    "arxiv": "https://arxiv.org/abs/2403.01342",
+    "figure_source": "arXiv source manuscript.tex, Figure 2"
+  },
+  "source_status": "paper-reproduced",
+  "author_released_inference_or_conversion_code": "not located as of 2026-09-13",
+  "historical_models": ["gpt-3.5-turbo-0613", "gpt-4-0613", "Llama-2-7b"],
+  "openai_access_date": "2023-11-01",
+  "dataset": "nl4opt_generation",
+  "input_view": "problem description only",
+  "named_entity_annotations_provided": false,
+  "reported_metric_label": "F1-score",
+  "phase2_evaluator_semantics": "declaration-accuracy semantics; see docs/benchmarks/nl4opt_evaluation.md",
+  "conversion_status": "reconstructed from paper Figure 1 and Figure 2; original conversion implementation not located",
+  "parser_id": "lm4opt_paper_reconstructed",
+  "parser_version": "1",
+  "message_structure": "one provider-neutral user message in this implementation; historical role not reported",
+  "retry_policy": "not reported",
+  "repeated_generations": "not reported",
+  "prompt_template_sha256": {
+    "nl4opt_lm4opt_zero_shot@1": "04676a74833d4938f83fd53b492065aa6403d6156600b18edce6b4de282de249",
+    "nl4opt_lm4opt_one_shot@1": "968f7ea5db84988802dc15dc97e4a2d9678221e89112f212dc7dc30c93216e61"
+  },
+  "unreported_inference_parameters": ["temperature", "top_p", "max_tokens", "frequency_penalty", "presence_penalty", "stop", "n", "seed", "timeout", "retries"]
+}

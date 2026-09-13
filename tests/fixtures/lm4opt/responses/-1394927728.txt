@@ -1,0 +1,8 @@
+Variables: senior accountants, junior accountants
+Constraints:
+(-1.0) * senior accountants + (-1.0) * junior accountants <= -100.0
+(-1.0) * senior accountants + (-0.0) * junior accountants <= -5.0
+(-1.0) * senior accountants + (0.3333333333333333) * junior accountants <= -0.0
+(3000.0) * senior accountants + (1000.0) * junior accountants <= 150000.0
+Objective Function:
+minimize (3000.0) * senior accountants + (1000.0) * junior accountants

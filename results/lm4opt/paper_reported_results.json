@@ -1,0 +1,16 @@
+{
+  "source": "Ahmed and Choudhury (2024), LM4OPT, Table 2",
+  "source_url": "https://arxiv.org/abs/2403.01342",
+  "label": "paper_reported_score",
+  "metric_label": "F1-score",
+  "scores": [
+    {"model": "Baseline (Ramamonjison et al.)", "condition": "baseline", "score": 0.610},
+    {"model": "Llama-2-7b", "condition": "zero-shot", "score": 0.1259},
+    {"model": "Llama-2-7b", "condition": "one-shot", "score": 0.1022},
+    {"model": "GPT-3.5", "model_id": "gpt-3.5-turbo-0613", "condition": "zero-shot", "score": 0.4381},
+    {"model": "GPT-3.5", "model_id": "gpt-3.5-turbo-0613", "condition": "one-shot", "score": 0.4928},
+    {"model": "GPT-4", "model_id": "gpt-4-0613", "condition": "zero-shot", "score": 0.6072},
+    {"model": "GPT-4", "model_id": "gpt-4-0613", "condition": "one-shot", "score": 0.6330}
+  ],
+  "reproduced_here": false
+}

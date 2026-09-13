@@ -1,0 +1,6 @@
+Variables: sled dogs, trucks
+Constraints:
+(50.0) * sled dogs + (100.0) * trucks <= 1000.0
+(1.0) * sled dogs + (-1.0) * trucks <= 1.0
+Objective Function:
+minimize (-100.0) * sled dogs + (-300.0) * trucks

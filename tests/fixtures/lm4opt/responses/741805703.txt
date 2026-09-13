@@ -1,0 +1,9 @@
+Variables: desk-lamps, night-lamps
+Constraints:
+(-1.0) * desk-lamps + (-0.0) * night-lamps <= -30.0
+(-0.0) * desk-lamps + (-1.0) * night-lamps <= -50.0
+(1.0) * desk-lamps + (0.0) * night-lamps <= 150.0
+(0.0) * desk-lamps + (1.0) * night-lamps <= 180.0
+(-1.0) * desk-lamps + (-1.0) * night-lamps <= -100.0
+Objective Function:
+minimize (-5.0) * desk-lamps + (-8.0) * night-lamps

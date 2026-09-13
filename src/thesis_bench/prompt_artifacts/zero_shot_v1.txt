@@ -1,0 +1,12 @@
+Imagine you are a combinatorial optimization problem solver. I will give you a problem description. Your task is to find the variables, constraints, and objective functions from that description. I am giving you an example response format; your output should be formatted like this. Example Response:
+``Variables: $$cleaners, receptionists$$
+Constraints:
+$$(-1.0) * cleaners + (-1.0) * receptionists \leq -100.0$$
+$$(-0.0) * cleaners + (-1.0) * receptionists \leq -20.0$$
+$$(0.33) * cleaners + (-1.0) * receptionists \leq -0.0$$
+$$(500.0) * cleaners + (350.0) * receptionists \leq 30000.0$$
+Objective Function:
+$$minimize (500.0) * cleaners + (350.0) * receptionist$$".
+Now, below is the actual problem description that you have to solve. In your response, all the constraints must be in the less than or equal to format. Your response must contain only these 3 parts: Variables, Constraints, and Objective Function. There must be no extra strings before or after it. Problem description to solve:
+
+${description}

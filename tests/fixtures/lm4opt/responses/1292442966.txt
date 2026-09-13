@@ -1,0 +1,7 @@
+Variables: airline, railway industries
+Constraints:
+(1.0) * airline + (1.0) * railway industries <= 50000.0
+(-0.0) * airline + (-1.0) * railway industries <= -10000.0
+(24.0) * airline + (25.0) * railway industries <= -0.0
+Objective Function:
+minimize (-0.3) * airline + (-0.1) * railway industries
