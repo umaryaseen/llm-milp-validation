@@ -8,6 +8,7 @@ from pathlib import Path
 
 from pydantic import ValidationError
 
+from thesis_bench.benchmarks.base import BenchmarkCase
 from thesis_bench.config.loader import load_config
 from thesis_bench.datasets.acquisition import (
     DatasetIntegrityError,
@@ -18,8 +19,10 @@ from thesis_bench.datasets.acquisition import (
 from thesis_bench.datasets.registry import get_benchmark
 from thesis_bench.evaluation.characterize import gold_check, write_characterization
 from thesis_bench.evaluation.provenance import fetch_evaluator, verify_evaluator
+from thesis_bench.experiments.lm4opt import run_lm4opt_mock
 from thesis_bench.experiments.runner import RunFailedError, dry_run
 from thesis_bench.experiments.storage import ArtifactConflictError
+from thesis_bench.prompts.lm4opt import get_lm4opt_protocol, protocol_names
 
 logger = logging.getLogger(__name__)
 
@@ -65,6 +68,23 @@ def build_parser() -> argparse.ArgumentParser:
     evaluator_commands.add_parser("gold-check", help="Check all frozen gold records").add_argument(
         "evaluator", choices=("nl4opt",)
     )
+    prompts = subparsers.add_parser(
+        "prompts", help="Inspect frozen paper-reproduced prompt protocols"
+    )
+    prompt_commands = prompts.add_subparsers(dest="prompt_command", required=True)
+    render = prompt_commands.add_parser("render", help="Render one protocol for an NL4Opt case")
+    render.add_argument("protocol", choices=protocol_names())
+    render.add_argument("--case-id", required=True)
+    render.add_argument("--split", required=True)
+    render.add_argument("--show", action="store_true")
+    info = prompt_commands.add_parser("info", help="Show protocol provenance")
+    info.add_argument("protocol", choices=protocol_names())
+    mock = subparsers.add_parser("lm4opt-dry-run", help="Run one offline LM4OPT fixture end to end")
+    mock.add_argument("protocol", choices=protocol_names())
+    mock.add_argument("--case-id", required=True)
+    mock.add_argument("--split", required=True)
+    mock.add_argument("--response-file", type=Path, required=True)
+    mock.add_argument("--run-id", required=True)
     return parser
 
 
@@ -78,6 +98,10 @@ def main(argv: Sequence[str] | None = None) -> int:
             print(f"Valid configuration: {config.experiment.experiment_id}")
         elif args.command == "dry-run":
             print(dry_run(config, run_id=args.run_id))
+        elif args.command == "prompts":
+            return _prompts_command(args)
+        elif args.command == "lm4opt-dry-run":
+            return _lm4opt_dry_run_command(args)
         else:
             if args.command == "datasets":
                 return _datasets_command(args)
@@ -166,4 +190,47 @@ def _evaluators_command(args: argparse.Namespace) -> int:
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
         print(json.dumps(report, indent=2))
+    return 0
+
+
+def _find_nl4opt_case(root: Path, split: str, case_id: str) -> BenchmarkCase:
+    adapter = get_benchmark("nl4opt_generation", root=root)
+    for case in adapter.iter_cases(split=split):
+        if case.case_id == case_id:
+            return case
+    raise ValueError(f"NL4Opt case not found: {split}/{case_id}")
+
+
+def _prompts_command(args: argparse.Namespace) -> int:
+    protocol = get_lm4opt_protocol(args.protocol)
+    if args.prompt_command == "info":
+        print(json.dumps({
+            "protocol": protocol.name,
+            "version": protocol.version,
+            "template_sha256": protocol.template_sha256,
+            "condition": protocol.condition,
+            "source_status": protocol.source_status,
+            "input_view": protocol.input_view,
+            "demonstration_included": protocol.demonstration_included,
+            "source_paper": "Ahmed and Choudhury (2024), arXiv:2403.01342, Figure 2",
+        }, indent=2))
+        return 0
+    case = _find_nl4opt_case(Path.cwd(), args.split, args.case_id)
+    result = {
+        "protocol": protocol.name,
+        "version": protocol.version,
+        "case_id": case.case_id,
+        "template_sha256": protocol.template_sha256,
+        "rendered_prompt_sha256": protocol.rendered_prompt_sha256(case),
+    }
+    if args.show:
+        result["prompt"] = protocol.render(case)[0].content
+    print(json.dumps(result, indent=2, ensure_ascii=False))
+    return 0
+
+
+def _lm4opt_dry_run_command(args: argparse.Namespace) -> int:
+    case = _find_nl4opt_case(Path.cwd(), args.split, args.case_id)
+    raw_response = args.response_file.read_text(encoding="utf-8")
+    print(run_lm4opt_mock(Path.cwd(), case, args.protocol, raw_response, run_id=args.run_id))
     return 0

@@ -1,0 +1,7 @@
+Variables: color printers, black and white printers
+Constraints:
+(1.0) * color printers + (0.0) * black and white printers <= 20.0
+(0.0) * color printers + (1.0) * black and white printers <= 30.0
+(1.0) * color printers + (1.0) * black and white printers <= 35.0
+Objective Function:
+minimize (-200.0) * color printers + (-70.0) * black and white printers

@@ -1,0 +1,8 @@
+Variables: apples, pears
+Constraints:
+(1.0) * apples + (1.0) * pears <= 50.0
+(-1.0) * apples + (-0.0) * pears <= -5.0
+(-0.0) * apples + (-1.0) * pears <= -10.0
+(-2.0) * apples + (1.0) * pears <= 0.0
+Objective Function:
+minimize (-2.0) * apples + (-4.0) * pears

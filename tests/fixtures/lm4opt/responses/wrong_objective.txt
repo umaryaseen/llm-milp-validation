@@ -1,0 +1,5 @@
+Variables: x
+Constraints:
+(1.0) * x <= 4.0
+Objective Function:
+minimize (99.0) * x

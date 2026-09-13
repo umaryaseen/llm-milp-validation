@@ -1,0 +1,7 @@
+Variables: dining tables, chairs
+Constraints:
+(8.0) * dining tables + (2.0) * chairs <= 500.0
+(0.7000000000000001) * dining tables + (-0.29999999999999993) * chairs <= -0.0
+(1000.0) * dining tables + (150.0) * chairs <= 20000.0
+Objective Function:
+minimize (-350.0) * dining tables + (-75.0) * chairs

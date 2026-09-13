@@ -15,7 +15,7 @@ LLMs can produce optimization formulations that look plausible while changing th
 
 ## Current Status
 
-Phase 0 is complete and Phase 1 is implemented on the `phase/01-nl4opt` branch. The repository now also freezes and audits the official NL4Opt generation source by Git commit, records checksums in a provenance manifest, and exposes a deterministic adapter. No real LLM API, prompting, scoring, solver execution, or benchmark cleaning is included.
+Phase 0, Phase 1, and Phase 2 are complete on `main`: the official NL4Opt generation source is frozen and audited, its adapter is deterministic, and the attributed official evaluator is reproduced with regression characterization. Phase 3 reconstructs only the historical LM4OPT prompt and output protocol; it does not call an LLM or add a contemporary provider.
 
 ## Methodology
 
@@ -69,8 +69,8 @@ The official NL4Opt source is acquired locally under `data/raw/nl4opt_generation
 
 - [x] Phase 0 — Experiment framework foundation
 - [x] Phase 1 — NL4Opt dataset adapter and provenance
-- [ ] Phase 2 — Official NL4Opt evaluation reproduction
-- [ ] Phase 3 — LM4OPT prompt protocols and contemporary providers
+- [x] Phase 2 — Official NL4Opt evaluation reproduction
+- [ ] Phase 3 — LM4OPT protocol reconstruction
 - [ ] Phase 4 — Contemporary NL4Opt benchmark
 - [ ] Phase 5 — OptiMUS / NLP4LP replication
 - [ ] Phase 6 — OPT-Engine benchmark subset

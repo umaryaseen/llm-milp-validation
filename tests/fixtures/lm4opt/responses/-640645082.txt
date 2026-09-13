@@ -1,0 +1,6 @@
+Variables: rickshaws, ox carts
+Constraints:
+(10.0) * rickshaws + (8.0) * ox carts <= 200.0
+(1.0) * rickshaws + (-1.0) * ox carts <= 1.0
+Objective Function:
+minimize (-50.0) * rickshaws + (-30.0) * ox carts

@@ -1,0 +1,8 @@
+Variables: cleaners, receptionists
+Constraints:
+(-1.0) * cleaners + (-1.0) * receptionists <= -100.0
+(-0.0) * cleaners + (-1.0) * receptionists <= -20.0
+(0.3333333333333333) * cleaners + (-1.0) * receptionists <= -0.0
+(500.0) * cleaners + (350.0) * receptionists <= 30000.0
+Objective Function:
+minimize (500.0) * cleaners + (350.0) * receptionists

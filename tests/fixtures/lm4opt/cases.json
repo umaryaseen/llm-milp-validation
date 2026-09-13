@@ -1,0 +1,38 @@
+[
+  {
+    "split": "train",
+    "case_id": "-804075997"
+  },
+  {
+    "split": "train",
+    "case_id": "1292442966"
+  },
+  {
+    "split": "dev",
+    "case_id": "-640645082"
+  },
+  {
+    "split": "dev",
+    "case_id": "892653388"
+  },
+  {
+    "split": "test",
+    "case_id": "1117636837"
+  },
+  {
+    "split": "test",
+    "case_id": "1884763091"
+  },
+  {
+    "split": "test",
+    "case_id": "-1394927728"
+  },
+  {
+    "split": "test",
+    "case_id": "294897151"
+  },
+  {
+    "split": "test",
+    "case_id": "741805703"
+  }
+]
