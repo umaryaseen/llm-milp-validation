@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+title: "LLM MILP Validation"
+type: software
+message: "If you use this software in academic work, please cite this repository and the associated M.Sc. thesis project."
+authors:
+  - family-names: Yaseen
+    given-names: Umar
+version: 0.1.0
+date-released: 2026-09-13
+license: MIT
+repository-code: "https://github.com/umaryaseen/llm-milp-validation"
+abstract: "A solver-grounded framework for detecting semantic errors in LLM-generated MILP models."

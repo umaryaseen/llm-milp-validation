@@ -1,0 +1,37 @@
+schema_version = "1"
+
+[experiment]
+experiment_id = "foundation-mock"
+output_dir = "../experiments"
+
+[experiment.metadata]
+purpose = "Repository foundation acceptance test"
+
+[benchmark]
+id = "mock"
+version = "1"
+split = "test"
+
+[model]
+provider = "mock"
+model_id = "deterministic-fixture-v1"
+# Future adapters may accept api_key_env = "OPENAI_API_KEY" (a name, never a secret).
+
+[model.generation]
+temperature = 0.0
+max_output_tokens = 256
+seed = 42
+
+[prompt]
+name = "formulation-smoke-test"
+version = "1.0.0"
+condition = "zero-shot"
+template = """
+Formulate the following optimization problem as a MILP.
+State decision variables, objective, and constraints.
+
+${description}
+"""
+
+[prompt.condition_metadata]
+examples = 0
