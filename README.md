@@ -15,7 +15,7 @@ LLMs can produce optimization formulations that look plausible while changing th
 
 ## Current Status
 
-Phase 0 is complete. The repository currently provides typed benchmark, provider, and prompt contracts; TOML configuration; immutable run artifacts; a deterministic mock provider; and a CLI smoke-test path. No real LLM API, benchmark download, solver execution, or NL4Opt integration is included yet.
+Phase 0 is complete and Phase 1 is implemented on the `phase/01-nl4opt` branch. The repository now also freezes and audits the official NL4Opt generation source by Git commit, records checksums in a provenance manifest, and exposes a deterministic adapter. No real LLM API, prompting, scoring, solver execution, or benchmark cleaning is included.
 
 ## Methodology
 
@@ -54,16 +54,21 @@ uv run pytest
 uv run ruff check .
 uv run python -m thesis_bench validate-config configs/mock.toml
 uv run python -m thesis_bench dry-run configs/mock.toml --run-id example-run
+uv run python -m thesis_bench datasets fetch nl4opt
+uv run python -m thesis_bench datasets verify nl4opt
+uv run python -m thesis_bench datasets info nl4opt
 ```
 
 The mock dry run uses synthetic data and a deterministic provider; it makes no network calls. Secrets are never stored in configuration or source files. Future provider adapters must receive environment-variable names and read credentials from the environment.
 
 Artifacts are written beneath `experiments/<experiment_id>/`. Each run contains `request.json`, `response.json`, `raw_response.txt`, and a final `record.json`. A run ID is immutable and an existing run cannot be overwritten.
 
+The official NL4Opt source is acquired locally under `data/raw/nl4opt_generation/<git-sha>/`; its tracked provenance manifest is `data/manifests/nl4opt_generation.json`. Raw benchmark data is ignored and is not redistributed by this repository.
+
 ## Roadmap
 
 - [x] Phase 0 — Experiment framework foundation
-- [ ] Phase 1 — NL4Opt dataset adapter and provenance
+- [x] Phase 1 — NL4Opt dataset adapter and provenance
 - [ ] Phase 2 — Original NL4Opt evaluation reproduction
 - [ ] Phase 3 — Contemporary LLM benchmark
 - [ ] Phase 4 — OptiMUS / NLP4LP replication
