@@ -14,6 +14,11 @@ class BenchmarkCase(SchemaModel):
     split: NonEmptyStr | None = None
     structured_data: JsonValue = None
     reference_formulation: JsonValue = None
+    reference_objective: JsonValue = None
+    reference_constraints: JsonValue = None
+    named_entities: JsonValue = None
+    source_id: NonEmptyStr | None = None
+    raw_record: dict[str, JsonValue] | None = None
     expected_solution: JsonValue = None
     expected_objective: float | None = Field(default=None, allow_inf_nan=False)
     metadata: dict[str, JsonValue] = Field(default_factory=dict)

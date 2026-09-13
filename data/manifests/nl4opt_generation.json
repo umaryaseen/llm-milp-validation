@@ -1,0 +1,58 @@
+{
+  "acquired_at": "2026-09-13T17:57:42.773610Z",
+  "acquisition_method": "git clone of the official repository followed by byte-preserving copy of required files",
+  "available_splits": [
+    "train",
+    "dev",
+    "test"
+  ],
+  "benchmark_id": "nl4opt_generation",
+  "citation": {
+    "competition": "NL4Opt Competition: Formulating Optimization Problems Based on Their Natural Language Descriptions",
+    "generation_baseline": "https://github.com/nl4opt/nl4opt-subtask2-baseline",
+    "repository_readme": "https://github.com/nl4opt/nl4opt-competition",
+    "year": 2022
+  },
+  "files": [
+    {
+      "byte_size": 1076,
+      "local_raw_path": "data/raw/nl4opt_generation/49f1e0d66b7fdcd33305a7f281c2a7c13f5620ea/LICENSE",
+      "sha256": "d8165362b50a26ccad4bc717c050c86db776b1c6d2ec40f288e416d0ecb62399",
+      "upstream_relative_path": "LICENSE"
+    },
+    {
+      "byte_size": 9150479,
+      "local_raw_path": "data/raw/nl4opt_generation/49f1e0d66b7fdcd33305a7f281c2a7c13f5620ea/generation_data/train.jsonl",
+      "sha256": "120ff6881c723296c458ef34f3840b5f14d174c6c30dd7002711f59e7e262380",
+      "upstream_relative_path": "generation_data/train.jsonl"
+    },
+    {
+      "byte_size": 1437713,
+      "local_raw_path": "data/raw/nl4opt_generation/49f1e0d66b7fdcd33305a7f281c2a7c13f5620ea/generation_data/dev.jsonl",
+      "sha256": "6538ce1fe76861f89879672a6c9a02c8f41156952256f3cfde82c2808ba320ee",
+      "upstream_relative_path": "generation_data/dev.jsonl"
+    },
+    {
+      "byte_size": 3897679,
+      "local_raw_path": "data/raw/nl4opt_generation/49f1e0d66b7fdcd33305a7f281c2a7c13f5620ea/generation_data/test.jsonl",
+      "sha256": "2a4a20a11935aacc99068ee4207d5265f15c0b387d4720c548c196d8ff2fcf5b",
+      "upstream_relative_path": "generation_data/test.jsonl"
+    }
+  ],
+  "license_identifier": "MIT",
+  "manifest_version": "1",
+  "raw_data_root": "data/raw/nl4opt_generation/49f1e0d66b7fdcd33305a7f281c2a7c13f5620ea",
+  "source_alias": "neurips2022-official",
+  "source_commit_sha": "49f1e0d66b7fdcd33305a7f281c2a7c13f5620ea",
+  "source_format": "JSON Lines; one outer source-ID object per line",
+  "split_counts": {
+    "dev": 99,
+    "test": 289,
+    "train": 713
+  },
+  "total_count": 1101,
+  "upstream_license_path": "LICENSE",
+  "upstream_license_sha256": "d8165362b50a26ccad4bc717c050c86db776b1c6d2ec40f288e416d0ecb62399",
+  "upstream_ref": null,
+  "upstream_repository_url": "https://github.com/nl4opt/nl4opt-competition"
+}

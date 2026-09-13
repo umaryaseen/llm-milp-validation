@@ -1,0 +1,1 @@
+{"test-source-001":{"document":"Test fixture problem.","vars":["y"],"var_mentions":["y"],"var_mention_to_first_var":{"y":"y"},"first_var_to_mentions":{"y":["y"]},"params":["3"],"obj_declaration":{"type":"objective","direction":"maximize","name":"value","terms":{"y":"3"}},"const_declarations":[],"spans":[],"tokens":[],"_input_hash":3,"order_mapping":{"y":0}}}
